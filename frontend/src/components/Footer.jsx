@@ -40,8 +40,8 @@ export default function Footer() {
             <img src="/efasol-logo.png" alt="EFASOL" className="mb-5 h-8 w-auto object-contain brightness-0 invert" />
             <p className="max-w-xs text-sm leading-relaxed text-white/75">{t("footer.tagline")}</p>
             <div className="mt-6 flex gap-3">
-              {socials.map((s, i) => (
-                <Social key={i} path={s.path} label={s.label} />
+              {socials.map((s) => (
+                <Social key={s.label} path={s.path} label={s.label} />
               ))}
             </div>
           </div>
@@ -71,8 +71,8 @@ export default function Footer() {
           <div>
             <h4 className="mb-5 font-display text-lg font-bold">{t("footer.contactUs")}</h4>
             <ul className="space-y-4">
-              {contact.map((c, i) => (
-                <li key={i} className="flex items-start gap-3">
+              {contact.map((c) => (
+                <li key={c.value} className="flex items-start gap-3">
                   <c.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#FFC107]" />
                   <span className="text-sm text-white/75">{c.value}</span>
                 </li>

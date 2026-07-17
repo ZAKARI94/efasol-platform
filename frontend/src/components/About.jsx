@@ -39,7 +39,7 @@ export default function About() {
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10">
             {STATS.map((stat, i) => (
               <motion.div
-                key={i}
+                key={stat.labelKey}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

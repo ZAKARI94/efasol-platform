@@ -64,8 +64,8 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={item} className="mt-14 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
-            {HERO_BADGES.map((b, i) => (
-              <div key={i} className="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md">
+            {HERO_BADGES.map((b) => (
+              <div key={b.key} className="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md">
                 <b.icon className="h-5 w-5 flex-shrink-0 text-[#FFC107]" />
                 <span className="text-sm font-medium leading-tight text-white">{t(b.key)}</span>
               </div>

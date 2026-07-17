@@ -19,7 +19,7 @@ export default function Testimonials() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {TESTIMONIALS.map((item, i) => (
           <motion.figure
-            key={i}
+            key={item.nameKey}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

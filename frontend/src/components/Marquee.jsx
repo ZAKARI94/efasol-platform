@@ -12,7 +12,7 @@ export default function Marquee() {
       <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div className="flex w-max animate-[marquee_28s_linear_infinite] items-center gap-14 pr-14">
           {items.map((key, i) => (
-            <div key={i} className="flex flex-shrink-0 items-center gap-2.5 text-lg font-semibold text-[#1F2937]/50">
+            <div key={`${key}-${i}`} className="flex flex-shrink-0 items-center gap-2.5 text-lg font-semibold text-[#1F2937]/50">
               <Sprout className="h-5 w-5 text-[#FFC107]" />
               {t(key)}
             </div>
