@@ -4,6 +4,8 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import asyncio
+import resend
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
@@ -18,6 +20,13 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+# Resend email config
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
+CONTACT_RECIPIENT = os.environ.get('CONTACT_RECIPIENT', '')
+if RESEND_API_KEY:
+    resend.api_key = RESEND_API_KEY
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -62,12 +71,52 @@ async def root():
     return {"message": "Hello World"}
 
 
+def _build_lead_email(msg: "ContactMessage") -> str:
+    return f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
+      <div style="background:#1B5E20;padding:24px 32px">
+        <h2 style="color:#ffffff;margin:0;font-size:20px">New EFASOL Contact Lead</h2>
+        <p style="color:#FFC107;margin:4px 0 0;font-size:13px;letter-spacing:1px">EUREKA FARM SOLUTIONS</p>
+      </div>
+      <table style="width:100%;border-collapse:collapse;padding:24px">
+        <tr><td style="padding:16px 32px 4px;color:#6b7280;font-size:12px;text-transform:uppercase">Name</td></tr>
+        <tr><td style="padding:0 32px 12px;color:#1f2937;font-size:16px;font-weight:bold">{msg.name}</td></tr>
+        <tr><td style="padding:4px 32px 4px;color:#6b7280;font-size:12px;text-transform:uppercase">Email</td></tr>
+        <tr><td style="padding:0 32px 12px;color:#1f2937;font-size:16px">{msg.email}</td></tr>
+        <tr><td style="padding:4px 32px 4px;color:#6b7280;font-size:12px;text-transform:uppercase">Phone</td></tr>
+        <tr><td style="padding:0 32px 12px;color:#1f2937;font-size:16px">{msg.phone or '-'}</td></tr>
+        <tr><td style="padding:4px 32px 4px;color:#6b7280;font-size:12px;text-transform:uppercase">Message</td></tr>
+        <tr><td style="padding:0 32px 24px;color:#1f2937;font-size:15px;line-height:1.6">{msg.message}</td></tr>
+      </table>
+    </div>
+    """
+
+
+async def _send_lead_notification(msg: "ContactMessage") -> None:
+    if not RESEND_API_KEY or not CONTACT_RECIPIENT:
+        logger.info("Resend not configured; skipping email notification.")
+        return
+    params = {
+        "from": SENDER_EMAIL,
+        "to": [CONTACT_RECIPIENT],
+        "reply_to": msg.email,
+        "subject": f"New lead from {msg.name} — EFASOL website",
+        "html": _build_lead_email(msg),
+    }
+    try:
+        await asyncio.to_thread(resend.Emails.send, params)
+        logger.info("Lead notification email sent to %s", CONTACT_RECIPIENT)
+    except Exception as e:
+        logger.error("Failed to send lead email: %s", str(e))
+
+
 @api_router.post("/contact", response_model=ContactMessage)
 async def create_contact_message(input: ContactMessageCreate):
     obj = ContactMessage(**input.model_dump())
     doc = obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
     await db.contact_messages.insert_one(doc)
+    await _send_lead_notification(obj)
     return obj
 
 

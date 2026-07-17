@@ -13,12 +13,16 @@ export const IMAGES = {
   avatar2: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/f7a4e45446c3f15746fa325dae5fe07a5dea93cac8b30458f96d656ec44ea6e3.png",
   avatar3: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/4aa07912e671456caa31dec364b802e5dc5eec08c6d1c10fdd7fbad903b7755e.png",
   cta: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/96952d22d0081519f616d0b9be0cd36f1c1e50d6f35604519ad086bab33f5021.png",
+  blog1: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/f6f62dc13142467597c6de281f901ea0193361b27c87929492b0a03657a68c93.png",
+  blog2: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/4ca75752896ed9a15ec4310c0968cd62f2da31a59f134c899ef0b2250f8524cc.png",
+  blog3: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/c5e9ff3c6148749bd453510411497ff30dc891e16318305dbb591b62448436cf.png",
 };
 
 export const NAV_LINKS = [
   { key: "nav.home", href: "#home" },
-  { key: "nav.about", href: "#about" },
   { key: "nav.services", href: "#services" },
+  { key: "nav.about", href: "#about" },
+  { key: "nav.blog", href: "#blog" },
   { key: "nav.contact", href: "#contact" },
 ];
 
@@ -63,3 +67,9 @@ export const TESTIMONIALS = [
 ];
 
 export const WHATSAPP_NUMBER = "2250749378770";
+
+export const BLOG_POSTS = [
+  { id: "p1", image: IMAGES.blog1, categoryKey: "blog.p1_cat", dateKey: "blog.p1_date", titleKey: "blog.p1_title", excerptKey: "blog.p1_excerpt" },
+  { id: "p2", image: IMAGES.blog2, categoryKey: "blog.p2_cat", dateKey: "blog.p2_date", titleKey: "blog.p2_title", excerptKey: "blog.p2_excerpt" },
+  { id: "p3", image: IMAGES.blog3, categoryKey: "blog.p3_cat", dateKey: "blog.p3_date", titleKey: "blog.p3_title", excerptKey: "blog.p3_excerpt" },
+];

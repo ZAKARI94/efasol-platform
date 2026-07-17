@@ -9,6 +9,7 @@ import Services from "./components/Services";
 import Approach from "./components/Approach";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
+import Blog from "./components/Blog";
 import CTA from "./components/CTA";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -28,6 +29,7 @@ function App() {
           <Approach />
           <About />
           <Testimonials />
+          <Blog />
           <CTA />
           <Contact />
         </main>
