@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../i18n";
 import { IMAGES, STATS } from "../data/site";
 import Reveal from "./Reveal";
+import CountUp from "./CountUp";
 
 export default function About() {
   const { t } = useLanguage();
@@ -48,7 +49,9 @@ export default function About() {
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#1B5E20]/10">
                   <stat.icon className="h-5 w-5 text-[#1B5E20]" />
                 </div>
-                <p className="font-display text-4xl font-extrabold text-[#1B5E20]">{stat.number}</p>
+                <p className="font-display text-4xl font-extrabold text-[#1B5E20]">
+                  <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                </p>
                 <p className="mt-1 text-sm font-medium text-[#1F2937]/60">{t(stat.labelKey)}</p>
               </motion.div>
             ))}

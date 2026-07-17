@@ -1,5 +1,5 @@
 // Centralized site configuration — data belongs in config files.
-import { Egg, Wheat, Sprout, Fish, Beef, Users, Award, Globe, Leaf } from "lucide-react";
+import { Egg, Wheat, Sprout, Fish, Beef, Users, Award, Globe, Leaf, Search, Cog, Handshake, LineChart } from "lucide-react";
 
 export const IMAGES = {
   hero: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/d706330c49a585ea32888347e6b5dff943b16e22808bd295e6d5d2dee44ba712.png",
@@ -9,6 +9,10 @@ export const IMAGES = {
   agriculture: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/d3955fa23ab08908bb965db774bf025226d04cc17690e63a5964922ff23aa2be.png",
   aquaculture: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/6390d121f2aa678ae08469be9ee6aa3b731692d17eae3e5a745293abfafe804a.png",
   livestock: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/9e139a764d86bf4ae07c30f15df184cd62aac05a886dfe76a5384eb2c12293f5.png",
+  avatar1: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/89b8913f08ab3ac477d901a1cbaa0c22fc9ddc34ab810ae805eac2656ce83a5c.png",
+  avatar2: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/f7a4e45446c3f15746fa325dae5fe07a5dea93cac8b30458f96d656ec44ea6e3.png",
+  avatar3: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/4aa07912e671456caa31dec364b802e5dc5eec08c6d1c10fdd7fbad903b7755e.png",
+  cta: "https://static.prod-images.emergentagent.com/jobs/4fc95641-0a79-473b-a562-b7afcb3992c5/images/96952d22d0081519f616d0b9be0cd36f1c1e50d6f35604519ad086bab33f5021.png",
 };
 
 export const NAV_LINKS = [
@@ -35,10 +39,27 @@ export const HERO_BADGES = [
 ];
 
 export const STATS = [
-  { icon: Users, number: "10,000+", labelKey: "about.farmers" },
-  { icon: Award, number: "50+", labelKey: "about.products" },
-  { icon: Globe, number: "15+", labelKey: "about.countries" },
-  { icon: Leaf, number: "100%", labelKey: "about.sustainable" },
+  { icon: Users, prefix: "", value: 10000, suffix: "+", labelKey: "about.farmers" },
+  { icon: Award, prefix: "", value: 50, suffix: "+", labelKey: "about.products" },
+  { icon: Globe, prefix: "", value: 15, suffix: "+", labelKey: "about.countries" },
+  { icon: Leaf, prefix: "", value: 100, suffix: "%", labelKey: "about.sustainable" },
+];
+
+export const TRUST_ITEMS = [
+  "trust.item1", "trust.item2", "trust.item3", "trust.item4", "trust.item5", "trust.item6",
+];
+
+export const APPROACH = [
+  { icon: Search, titleKey: "approach.s1_title", descKey: "approach.s1_desc" },
+  { icon: Cog, titleKey: "approach.s2_title", descKey: "approach.s2_desc" },
+  { icon: Handshake, titleKey: "approach.s3_title", descKey: "approach.s3_desc" },
+  { icon: LineChart, titleKey: "approach.s4_title", descKey: "approach.s4_desc" },
+];
+
+export const TESTIMONIALS = [
+  { image: IMAGES.avatar3, nameKey: "t.t1_name", roleKey: "t.t1_role", quoteKey: "t.t1_quote" },
+  { image: IMAGES.avatar2, nameKey: "t.t2_name", roleKey: "t.t2_role", quoteKey: "t.t2_quote" },
+  { image: IMAGES.avatar1, nameKey: "t.t3_name", roleKey: "t.t3_role", quoteKey: "t.t3_quote" },
 ];
 
 export const WHATSAPP_NUMBER = "2250749378770";
