@@ -41,3 +41,12 @@ Green #1B5E20 · Gold #FFC107 · Light green #2E7D32 · Dark #1F2937 · Light #F
 
 ## Iteration 2 (2026-07-17) — "Make it amazing"
 Added premium sections (all bilingual, config-driven, tested 100%): scroll-progress bar, trust marquee, dark "Approach" 4-step process, animated count-up stats (locale-aware FR/EN formatting), 3-card Testimonials (AI avatars), and a full-bleed CTA band. New images: 3 testimonial avatars + 1 CTA background. New files: components/{ScrollProgress,Marquee,Approach,Testimonials,CTA,CountUp}.jsx; site.js TRUST_ITEMS/APPROACH/TESTIMONIALS; i18n trust.*/approach.*/t.*/cta.* keys.
+
+## Iteration 3 (2026-07-17) — Email delivery + Blog + HD logo
+- Contact form now sends a styled lead-notification email via **Resend** (backend `_send_lead_notification`, non-blocking `asyncio.to_thread`). Graceful skip when `RESEND_API_KEY` is empty (form still saves to DB + returns 200). Env: RESEND_API_KEY (empty, user to fill), SENDER_EMAIL=onboarding@resend.dev, CONTACT_RECIPIENT=info@efasol.ci. Added `resend==2.33.0`.
+- New **Blog/News** section (3 bilingual demo articles, config-driven `BLOG_POSTS`, `components/Blog.jsx`) + "News" nav link (#blog). New images: blog1/2/3.
+- Replaced logo with **high-res transparent** version (1233x310) — regenerated from original + background keyed out + trimmed. Overwrote /app/frontend/public/efasol-logo.png.
+- Tested 100% (backend 6/6, frontend regression clean, 16 images load).
+
+### ACTION REQUIRED for live emails
+User must create a Resend API key (https://resend.com/api-keys), put it in backend/.env RESEND_API_KEY, then restart backend. To send FROM info@efasol.ci they must verify the efasol.ci domain in Resend; until then SENDER stays onboarding@resend.dev (Resend test mode only delivers to the account owner's own email).
