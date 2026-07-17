@@ -1,0 +1,127 @@
+{
+  "theme_mode": "light",
+  "typography": {
+    "fonts": {
+      "headings": "'Cabinet Grotesk', sans-serif",
+      "body": "'Manrope', sans-serif",
+      "imports": [
+        "https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap",
+        "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      ]
+    },
+    "scale": {
+      "h1": "text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter leading-[1.05]",
+      "h2": "text-4xl sm:text-5xl font-bold tracking-tight leading-tight",
+      "h3": "text-2xl sm:text-3xl font-semibold tracking-tight",
+      "body_lg": "text-lg md:text-xl leading-relaxed text-[#1F2937]/80",
+      "body": "text-base md:text-lg leading-relaxed text-[#1F2937]/70",
+      "overline": "text-sm font-bold uppercase tracking-[0.2em] text-[#2E7D32]"
+    }
+  },
+  "colors": {
+    "brand_primary": "#1B5E20",
+    "brand_secondary": "#FFC107",
+    "brand_primary_light": "#2E7D32",
+    "text_dark": "#1F2937",
+    "background_light": "#F3F4F6",
+    "surface_white": "#FFFFFF",
+    "border_light": "rgba(27, 94, 32, 0.1)"
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-[#F3F4F6]/75 border border-[#FFFFFF]/40 shadow-[0_8px_32px_rgba(27,94,32,0.05)]",
+    "noise_texture": "Add a fixed full-screen SVG noise overlay with pointer-events-none opacity-[0.03] mix-blend-multiply to create an editorial, premium organic feel.",
+    "shadows": {
+      "card_hover": "shadow-[0_24px_48px_rgba(27,94,32,0.08)]",
+      "button": "shadow-[0_8px_20px_rgba(255,193,7,0.3)]",
+      "button_hover": "shadow-[0_12px_24px_rgba(255,193,7,0.5)]"
+    },
+    "radii": {
+      "card": "rounded-[2rem]",
+      "button": "rounded-full",
+      "section": "rounded-[4rem]"
+    }
+  },
+  "layouts": {
+    "spacing_scale": "p-6, p-8, p-12, p-16, p-24, py-32 for section separation",
+    "services_bento": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6. Poultry (col-span-full lg:col-span-8), Animal Feed (col-span-full lg:col-span-4), etc. Create asymmetry.",
+    "about_stats": "grid grid-cols-2 md:grid-cols-4 gap-8 gap-y-12 items-start"
+  },
+  "components": {
+    "Header": {
+      "layout": "Fixed top-4 left-4 right-4 z-50 mx-auto max-w-7xl rounded-full px-6 py-4 flex justify-between items-center transition-all duration-300",
+      "style": "Use Glassmorphism visual enhancer. Do not use pure transparent background.",
+      "elements": "Logo (font-bold text-xl text-brand_primary), Nav Links (hidden on mobile, gap-8 on desktop), FR/EN Toggle (text-sm font-bold cursor-pointer hover:text-brand_primary_light), Get Started CTA (Pill shape, brand_primary bg, white text)"
+    },
+    "Hero": {
+      "layout": "min-h-[95vh] flex flex-col justify-end pb-24 px-8 relative overflow-hidden rounded-b-[4rem] mx-4 mt-4",
+      "style": "Full cover background image. Image overlay: bg-gradient-to-t from-[#1F2937] via-[#1F2937]/50 to-transparent.",
+      "elements": "Massive H1 'Transforming Agriculture. Empowering Africa.' (text-white max-w-4xl), Subtitle (text-white/80 max-w-2xl mt-6), Primary CTA (Gold bg, Dark text, mt-10), Trust badges row below CTA."
+    },
+    "Services": {
+      "layout": "py-32 px-8 max-w-7xl mx-auto",
+      "style": "Bento Grid Layout. Cards should have surface_white background, border_light, and overflow hidden group relative.",
+      "elements": "5 Cards: Poultry, Animal Feed, Agriculture, Aquaculture, Livestock. Each card has an image (h-48 or absolute fill with overlay depending on bento block size), Title, short desc, and a subtle animated arrow icon on hover."
+    },
+    "About": {
+      "layout": "py-24 px-8 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center",
+      "elements": "Left col: Large H2, thick green divider (w-24 h-2 bg-brand_primary mt-8), compelling paragraph. Right col: 4-stat grid (10,000+ Farmers, 50+ Products, 15+ Countries, 100% Sustainable) using brand_secondary for numbers."
+    },
+    "Contact": {
+      "layout": "py-24 bg-surface_white rounded-[4rem] px-8 max-w-4xl mx-auto my-24 shadow-sm border border-border_light relative overflow-hidden",
+      "elements": "Clean functional form (Name, Email, Message, Submit). Inputs should be minimalistic: subtle rounded-xl bg-background_light px-6 py-4 border-none focus:ring-2 focus:ring-brand_primary/20."
+    },
+    "Footer": {
+      "layout": "bg-brand_primary text-white py-24 px-8 rounded-t-[4rem] mt-24",
+      "elements": "Massive 'EFASOL' typography (opacity-10 text-[15vw] absolute bottom-0 left-0 pointer-events-none), grid for links, gold accent text for email/phone, social icons."
+    },
+    "Floating_WhatsApp": {
+      "layout": "Fixed bottom-8 right-8 z-50",
+      "style": "rounded-full bg-[#25D366] text-white p-4 shadow-lg hover:scale-110 transition-transform flex items-center justify-center animate-bounce-slow"
+    }
+  },
+  "motion": {
+    "scrolling": "Implement Lenis smooth scroll for a premium, heavy momentum feel.",
+    "page_load": "Framer Motion staggered fade-up for Hero text. Hero image slow scale-out (from scale 1.1 to 1.0 over 10 seconds).",
+    "scroll_reveal": "Use Framer Motion 'whileInView' for sections to fade up (y: 40 -> 0) and bento cards to stagger in.",
+    "interactions": "Buttons: scale down 0.95 on tap. Cards: subtle -translate-y-2 on hover with shadow expansion."
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1706862609885-7771b001daa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwyfHxhZnJpY2FuJTIwYWdyaWN1bHR1cmUlMjBmYXJtaW5nJTIwc3Vuc2V0fGVufDB8fHx8MTc4NDI3NjQzMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Tractor driving through field at sunset"
+    },
+    "service_poultry": {
+      "url": "https://images.unsplash.com/photo-1770462574425-c50d1edc24ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBwb3VsdHJ5JTIwZmFybXxlbnwwfHx8fDE3ODQyNzY0MzF8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Poultry foraging in grass"
+    },
+    "service_livestock": {
+      "url": "https://images.unsplash.com/photo-1597616456860-df68738ec8e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxjYXR0bGUlMjBsaXZlc3RvY2slMjBmYXJtfGVufDB8fHx8MTc4NDI3NjQzMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Brown and white cow on green grass"
+    },
+    "service_aquaculture": {
+      "url": "https://images.unsplash.com/photo-1723134085909-19da487ac9bd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwyfHxzdXN0YWluYWJsZSUyMGFxdWFjdWx0dXJlJTIwZmlzaCUyMGZhcm18ZW58MHx8fHwxNzg0Mjc2NDMxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Aerial view of sustainable fish farm nets"
+    },
+    "service_agriculture": {
+      "url": "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxzdXN0YWluYWJsZSUyMGFncmljdWx0dXJlJTIwaGFydmVzdHxlbnwwfHx8fDE3ODQyNzY0MzJ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Brown wheat field harvest"
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure all text over images uses proper gradient overlays to meet contrast ratios. Never place light text directly on raw images.",
+    "focus": "focus-visible:ring-2 focus-visible:ring-brand_secondary focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-background_light",
+    "testing": "All interactive elements MUST include data-testid (e.g., data-testid='hero-cta-button', data-testid='lang-toggle', data-testid='contact-submit-btn')."
+  },
+  "instructions_to_main_agent": [
+    "Build the landing page in React 19 + Tailwind v4 using standard .js/.jsx extensions.",
+    "Implement a dummy i18n React state to toggle content between FR and EN (keep it simple, inline dictionary is fine).",
+    "CRITICAL: The Header must use the glassmorphism utility classes and never be purely transparent. Ensure it floats smoothly over the Hero.",
+    "Add a global SVG noise overlay as a fixed, pointer-events-none layer to create the 'editorial/premium' texture requested.",
+    "Import 'Cabinet Grotesk' and 'Manrope' via standard CSS @import in index.css as specified in the typography imports array. DO NOT use generic fonts.",
+    "For the Services section, explicitly use the asymmetrical Bento grid provided (mixing col-span-12, 8, 4 etc.). Add `overflow-hidden` to cards so inner images can scale up on hover.",
+    "The Contact form must be fully functional UI-wise with proper inputs and button states.",
+    "Ensure the hero image has a solid bottom gradient overlay to make text highly readable.",
+    "Use Framer Motion for scroll reveals and staggered text entrances."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": "Do not make generic centered layouts. Use 2-3x more spacing than typical designs. Create depth through layered design elements (z-index hierarchy). Use modern pill-shaped buttons. Exclude transforms from universal transition rules (`transition-all` is fine if no complex transforms are applied, otherwise specify `transition-colors`, etc.). Every interaction needs micro-animations. ALWAYS add `data-testid` to everything interactive."
+}
