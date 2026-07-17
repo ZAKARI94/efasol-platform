@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "../i18n";
 
 export default function CountUp({ value, prefix = "", suffix = "", duration = 1800 }) {
+  const { language } = useLanguage();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const [display, setDisplay] = useState(0);
@@ -23,7 +25,7 @@ export default function CountUp({ value, prefix = "", suffix = "", duration = 18
   return (
     <motion.span ref={ref}>
       {prefix}
-      {display.toLocaleString()}
+      {display.toLocaleString(language === "fr" ? "fr-FR" : "en-US")}
       {suffix}
     </motion.span>
   );

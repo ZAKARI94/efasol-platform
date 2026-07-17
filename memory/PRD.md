@@ -38,3 +38,6 @@ Green #1B5E20 · Gold #FFC107 · Light green #2E7D32 · Dark #1F2937 · Light #F
 ## Notes
 - No authentication yet → no test credentials. Public site.
 - WhatsApp number in `src/data/site.js` (WHATSAPP_NUMBER) parsed from placeholder — confirm real number.
+
+## Iteration 2 (2026-07-17) — "Make it amazing"
+Added premium sections (all bilingual, config-driven, tested 100%): scroll-progress bar, trust marquee, dark "Approach" 4-step process, animated count-up stats (locale-aware FR/EN formatting), 3-card Testimonials (AI avatars), and a full-bleed CTA band. New images: 3 testimonial avatars + 1 CTA background. New files: components/{ScrollProgress,Marquee,Approach,Testimonials,CTA,CountUp}.jsx; site.js TRUST_ITEMS/APPROACH/TESTIMONIALS; i18n trust.*/approach.*/t.*/cta.* keys.
