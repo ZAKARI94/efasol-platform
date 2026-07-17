@@ -37,10 +37,47 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+
+class ContactMessage(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    phone: str = ""
+    message: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class ContactMessageCreate(BaseModel):
+    name: str
+    email: str
+    phone: str = ""
+    message: str
+
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@api_router.post("/contact", response_model=ContactMessage)
+async def create_contact_message(input: ContactMessageCreate):
+    obj = ContactMessage(**input.model_dump())
+    doc = obj.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    await db.contact_messages.insert_one(doc)
+    return obj
+
+
+@api_router.get("/contact", response_model=List[ContactMessage])
+async def list_contact_messages():
+    msgs = await db.contact_messages.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    for m in msgs:
+        if isinstance(m.get('created_at'), str):
+            m['created_at'] = datetime.fromisoformat(m['created_at'])
+    return msgs
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
