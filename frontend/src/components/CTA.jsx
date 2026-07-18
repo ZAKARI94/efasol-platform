@@ -39,7 +39,7 @@ export default function CTA() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-10"
           >
-            <a href="#contact" className="btn-gold group text-lg" data-testid="cta-button">
+            <a href="/contact" className="btn-gold group text-lg" data-testid="cta-button">
               {t("cta.button")}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>

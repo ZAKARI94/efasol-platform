@@ -4,17 +4,31 @@ import time
 import pytest
 import requests
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://types-platform.preview.emergentagent.com').rstrip('/')
-# Fallback: read from frontend/.env if env var not set in this shell
-if not BASE_URL or 'REACT_APP_BACKEND_URL' not in os.environ:
-    try:
-        with open('/app/frontend/.env') as f:
-            for line in f:
-                if line.startswith('REACT_APP_BACKEND_URL='):
-                    BASE_URL = line.split('=', 1)[1].strip().rstrip('/')
-                    break
-    except FileNotFoundError:
-        pass
+def _resolve_base_url() -> str:
+    # Prefer explicit test/backend vars; fallback to frontend var for compatibility.
+    for key in ("BACKEND_TEST_URL", "BACKEND_URL", "REACT_APP_BACKEND_URL"):
+        value = os.environ.get(key)
+        if value:
+            return value.rstrip("/")
+
+    # Try frontend env files in common container layouts.
+    for env_path in (
+        "/workspaces/efasol-platform/frontend/.env",
+        "/app/frontend/.env",
+    ):
+        try:
+            with open(env_path, encoding="utf-8") as f:
+                for line in f:
+                    if line.startswith("REACT_APP_BACKEND_URL="):
+                        return line.split("=", 1)[1].strip().rstrip("/")
+        except FileNotFoundError:
+            continue
+
+    # Local dev default.
+    return "http://localhost:8000"
+
+
+BASE_URL = _resolve_base_url()
 
 API = f"{BASE_URL}/api"
 
