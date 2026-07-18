@@ -5,24 +5,29 @@ import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "../i18n";
 import Reveal from "./Reveal";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API_BASE = process.env.REACT_APP_BACKEND_URL ? `${process.env.REACT_APP_BACKEND_URL}/api` : "/api";
 
 export default function Contact() {
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [feedback, setFeedback] = useState(null);
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
+    setFeedback(null);
+
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post(`${API_BASE}/contact`, form);
       toast.success(t("contact.success"));
+      setFeedback({ type: "success", message: t("contact.success") });
       setForm({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       toast.error(t("contact.error"));
+      setFeedback({ type: "error", message: t("contact.error") });
     } finally {
       setSending(false);
     }
@@ -75,6 +80,11 @@ export default function Contact() {
                 {sending ? t("contact.sending") : t("contact.send")}
                 {!sending && <Send className="h-4 w-4" />}
               </button>
+              {feedback ? (
+                <div className={`rounded-3xl px-5 py-4 text-sm ${feedback.type === "success" ? "bg-emerald-50 text-emerald-900" : "bg-rose-50 text-rose-900"}`}>
+                  {feedback.message}
+                </div>
+              ) : null}
             </form>
           </div>
         </div>

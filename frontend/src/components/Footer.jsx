@@ -4,7 +4,7 @@ import { useLanguage } from "../i18n";
 import { NAV_LINKS, SERVICES } from "../data/site";
 
 const Social = ({ path, label }) => (
-  <a href="#" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 transition-colors hover:bg-[#FFC107] hover:text-[#1B5E20]">
+  <a href="#" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FFC107] hover:text-[#1B5E20]">
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">{path}</svg>
   </a>
 );
@@ -28,8 +28,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative mt-8 overflow-hidden rounded-t-[3rem] bg-[#1B5E20] text-white" data-testid="site-footer">
-      {/* Oversized wordmark */}
+    <footer className="relative mt-8 overflow-hidden rounded-t-[3rem] border border-[#FFC107]/15 bg-gradient-to-br from-[#0F3D14] via-[#1B5E20] to-[#144C1A] text-white shadow-[0_-20px_60px_rgba(15,61,20,0.18)]" data-testid="site-footer">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,193,7,0.16),_transparent_38%)]" />
       <p aria-hidden className="pointer-events-none absolute -bottom-6 left-0 select-none font-display text-[22vw] font-extrabold leading-none text-white/5 sm:text-[16vw]">
         EFASOL
       </p>
@@ -38,7 +38,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <img src="/efasol-logo.png" alt="EFASOL" className="mb-5 h-8 w-auto object-contain brightness-0 invert" />
-            <p className="max-w-xs text-sm leading-relaxed text-white/75">{t("footer.tagline")}</p>
+            <p className="max-w-xs text-sm leading-relaxed text-white/80">{t("footer.tagline")}</p>
             <div className="mt-6 flex gap-3">
               {socials.map((s) => (
                 <Social key={s.label} path={s.path} label={s.label} />
@@ -51,7 +51,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.key}>
-                  <a href={l.href} className="text-sm text-white/75 transition-colors hover:text-[#FFC107]">{t(l.key)}</a>
+                  <a href={l.href} className="text-sm text-white/75 transition-colors duration-200 hover:text-[#FFC107]">{t(l.key)}</a>
                 </li>
               ))}
             </ul>
@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {SERVICES.map((s) => (
                 <li key={s.id}>
-                  <a href="#services" className="text-sm text-white/75 transition-colors hover:text-[#FFC107]">{t(s.titleKey)}</a>
+                  <a href="/services" className="text-sm text-white/75 transition-colors duration-200 hover:text-[#FFC107]">{t(s.titleKey)}</a>
                 </li>
               ))}
             </ul>
@@ -71,10 +71,10 @@ export default function Footer() {
           <div>
             <h4 className="mb-5 font-display text-lg font-bold">{t("footer.contactUs")}</h4>
             <ul className="space-y-4">
-              {contact.map((c) => (
-                <li key={c.value} className="flex items-start gap-3">
+              {contact.map((c, i) => (
+                <li key={i} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
                   <c.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#FFC107]" />
-                  <span className="text-sm text-white/75">{c.value}</span>
+                  <span className="text-sm text-white/80">{c.value}</span>
                 </li>
               ))}
             </ul>
@@ -84,8 +84,8 @@ export default function Footer() {
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-8 md:flex-row">
           <p className="text-sm text-white/70">{t("footer.copyright")}</p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-white/70 transition-colors hover:text-[#FFC107]">{t("footer.privacy")}</a>
-            <a href="#" className="text-sm text-white/70 transition-colors hover:text-[#FFC107]">{t("footer.terms")}</a>
+            <a href="#" className="text-sm text-white/70 transition-colors duration-200 hover:text-[#FFC107]">{t("footer.privacy")}</a>
+            <a href="#" className="text-sm text-white/70 transition-colors duration-200 hover:text-[#FFC107]">{t("footer.terms")}</a>
           </div>
         </div>
       </div>

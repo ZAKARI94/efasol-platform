@@ -25,20 +25,28 @@ export default function Hero() {
       {/* Background image with slow zoom-out */}
       <motion.div
         className="absolute inset-0 z-0"
-        initial={{ scale: 1.12 }}
-        animate={{ scale: 1 }}
+        initial={{ scale: 1.14, opacity: 0.9 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 12, ease: "easeOut" }}
       >
         <img src={IMAGES.hero} alt="African farmland at golden hour" className="h-full w-full object-cover" />
       </motion.div>
 
-      {/* Overlays for readability */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#0F3D14] via-[#0F3D14]/55 to-transparent" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D14]/60 to-transparent" />
+      <motion.div
+        className="absolute inset-0 z-[1]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F3D14] via-[#0F3D14]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F3D14]/65 via-[#0F3D14]/20 to-transparent" />
+        <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-[#FFC107]/15 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+      </motion.div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-8">
         <motion.div variants={container} initial="hidden" animate="show" className="max-w-4xl">
-          <motion.p variants={item} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md">
+          <motion.p variants={item} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md shadow-[0_12px_35px_rgba(0,0,0,0.18)]">
             <span className="h-2 w-2 rounded-full bg-[#FFC107]" />
             {t("hero.eyebrow")}
           </motion.p>
@@ -54,21 +62,27 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#contact" className="btn-gold group" data-testid="hero-cta-button">
+            <a href="/contact" className="btn-gold group" data-testid="hero-cta-button">
               {t("hero.cta")}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="#services" className="rounded-full border border-white/40 bg-white/10 px-7 py-4 font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20" data-testid="hero-services-button">
+            <a href="/services" className="rounded-full border border-white/40 bg-white/10 px-7 py-4 font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20" data-testid="hero-services-button">
               {t("hero.cta2")}
             </a>
           </motion.div>
 
           <motion.div variants={item} className="mt-14 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
-            {HERO_BADGES.map((b) => (
-              <div key={b.key} className="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md">
+            {HERO_BADGES.map((b, i) => (
+              <motion.div
+                key={b.key}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.35 + i * 0.08 }}
+                className="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+              >
                 <b.icon className="h-5 w-5 flex-shrink-0 text-[#FFC107]" />
                 <span className="text-sm font-medium leading-tight text-white">{t(b.key)}</span>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>

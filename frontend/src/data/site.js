@@ -19,11 +19,11 @@ export const IMAGES = {
 };
 
 export const NAV_LINKS = [
-  { key: "nav.home", href: "#home" },
-  { key: "nav.services", href: "#services" },
-  { key: "nav.about", href: "#about" },
-  { key: "nav.blog", href: "#blog" },
-  { key: "nav.contact", href: "#contact" },
+  { key: "nav.home", href: "/" },
+  { key: "nav.about", href: "/about" },
+  { key: "nav.services", href: "/services" },
+  { key: "nav.marketplace", href: "/marketplace" },
+  { key: "nav.contact", href: "/contact" },
 ];
 
 // Bento layout: span classes create asymmetry on large screens.
